@@ -36,14 +36,12 @@
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             echo "Build pipeline for worker is complete..."
         }
-         
-    success {
-        setBuildStatus("Build succeeded", "SUCCESS");
-    }
-    failure {
-        setBuildStatus("Build failed", "FAILURE");
-    }
-  
+        success {
+            setBuildStatus("Build succeeded", "SUCCESS");
+            }
+        failure {
+            setBuildStatus("Build failed", "FAILURE");
+            }
     }
 
  }
