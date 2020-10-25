@@ -37,14 +37,14 @@
                 echo "Packaging worker app"
                 dir('worker'){
                     sh 'mvn package -DskipTests'
+                    archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
                 }
             }
         }
     }
     post{
         always{
-            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-            echo "Build pipeline for worker is complete..."
+            echo "Pipeline for worker is complete..."
         }
         success {
             setBuildResult("SUCCESS");
@@ -53,5 +53,4 @@
             setBuildResult("FAILURE");
             }
     }
-
  }
