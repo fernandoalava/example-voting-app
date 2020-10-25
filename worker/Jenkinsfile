@@ -46,11 +46,5 @@
         always{
             echo "Pipeline for worker is complete..."
         }
-        success {
-            setBuildResult("SUCCESS");
-            }
-        failure {
-            setBuildResult("FAILURE");
-            }
     }
  }
