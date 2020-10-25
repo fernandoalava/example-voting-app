@@ -7,6 +7,9 @@
     }
     stages{
         stage('build'){
+            when{
+                changeset "**/worker/**"
+            }
             steps{
                 echo "Compiling worker app"
                 dir('worker'){
@@ -15,6 +18,9 @@
             }
         }
         stage('test'){
+            when{
+                changeset "**/worker/**"
+            }
             steps{
                 echo "Running Unit Tests"
                 dir('worker'){
@@ -23,6 +29,10 @@
             }
         }
         stage('package'){
+            when{
+                branch 'master'
+                changeset "**/worker/**"
+            }
             steps{
                 echo "Packaging worker app"
                 dir('worker'){
@@ -37,10 +47,10 @@
             echo "Build pipeline for worker is complete..."
         }
         success {
-            setBuildStatus("Build succeeded", "SUCCESS");
+            setBuildResult("SUCCESS");
             }
         failure {
-            setBuildStatus("Build failed", "FAILURE");
+            setBuildResult("FAILURE");
             }
     }
 
