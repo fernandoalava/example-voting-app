@@ -43,7 +43,6 @@
         }
         stage('docke-package'){
             when{
-                branch 'master'
                 changeset "**/worker/**"
             }
             steps{
